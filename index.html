@@ -555,22 +555,35 @@
     <h2>Full <span class="dim">resume</span></h2>
     <p class="sec-desc">Embedded below. Download the PDF version for applications.</p>
   </div>
+
   <div style="border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin-bottom: 20px;">
+
+    <!-- header bar -->
     <div style="background: var(--surface); padding: 12px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
-      <span style="font-size: 11px; color: var(--text3); letter-spacing: 0.1em;">TYSON-ATKINSON-RESUME.PDF</span>
-      <a href="TysonResumeA.pdf" target="_blank" class="btn btn-outline" style="padding: 6px 14px; font-size: 10px;">Download ↓</a>
+      <span style="font-size: 11px; color: var(--text3); letter-spacing: 0.1em;">
+        TYSON-ATKINSON-RESUME.PDF
+      </span>
+
+      <a href="TysonResumeA.pdf" target="_blank"
+         class="btn btn-outline"
+         style="padding: 6px 14px; font-size: 10px;">
+        Download ↓
+      </a>
     </div>
-    <div style="background: #111; padding: 40px; text-align: center; color: var(--text3); font-size: 13px;">
-      <!-- Replace the src below with your hosted PDF URL -->
-     <iframe
-  src="TysonResumeA.pdf"
-  style="width:100%; height:700px; border:none; display:block;">
-</iframe>
+
+    <!-- PDF embed -->
+    <div style="background: #111;">
+      <iframe
+        src="TysonResumeA.pdf"
+        style="width:100%; height:700px; border:none; display:block;">
+      </iframe>
+    </div>
+
   </div>
 </section>
 
 <div class="divider"></div>
-
+  
 <!-- CONTACT -->
 <section style="padding-bottom: 0;">
   <div id="contact-wrap" class="fade-in">
