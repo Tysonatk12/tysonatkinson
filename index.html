@@ -6,6 +6,7 @@
 <title>Tyson Atkinson · Cybersecurity Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+
 <style>
   :root {
     --bg: #050810;
@@ -26,624 +27,76 @@
     --font-mono: 'JetBrains Mono', monospace;
     --font-display: 'Syne', sans-serif;
   }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
   body {
     background: var(--bg);
     color: var(--text);
     font-family: var(--font-mono);
-    font-size: 14px;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,200,255,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,200,255,0.025) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
-    pointer-events: none;
-    z-index: 0;
   }
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(5,8,16,0.92); backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 32px; height: 56px;
-    display: flex; align-items: center; justify-content: space-between;
+  section { padding: 100px 40px; max-width: 1100px; margin: auto; }
+
+  .btn {
+    display: inline-flex;
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 12px;
   }
-  .nav-logo { font-family: var(--font-mono); font-size: 13px; color: var(--cyan); letter-spacing: 0.05em; text-decoration: none; }
-  .nav-logo span { color: var(--text2); }
-  .nav-links { display: flex; gap: 0; list-style: none; }
-  .nav-links a { display: block; padding: 6px 14px; color: var(--text2); text-decoration: none; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; border-radius: 3px; }
-  .nav-links a:hover { color: var(--cyan); }
-  .nav-cta { background: var(--cyan); color: var(--bg) !important; font-weight: 700; border-radius: 3px; }
-  .nav-cta:hover { background: var(--cyan2); }
 
-  main { position: relative; z-index: 1; }
-
-  section { padding: 100px 0; max-width: 1100px; margin: 0 auto; padding-left: 40px; padding-right: 40px; }
-
-  /* HERO */
-  #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 120px; padding-bottom: 60px; }
-  .hero-tag { font-size: 11px; color: var(--cyan); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
-  .hero-tag::before { content: ''; display: block; width: 32px; height: 1px; background: var(--cyan); }
-  h1 { font-family: var(--font-display); font-size: clamp(52px, 8vw, 96px); font-weight: 800; line-height: 0.95; letter-spacing: -0.02em; color: #fff; margin-bottom: 8px; }
-  h1 .accent { color: var(--cyan); }
-  .hero-subtitle { font-family: var(--font-display); font-size: clamp(18px, 2.5vw, 26px); font-weight: 600; color: var(--text2); margin-bottom: 32px; margin-top: 12px; }
-  .hero-bio { max-width: 660px; color: var(--text2); font-size: 14px; line-height: 1.8; margin-bottom: 48px; }
-  .hero-bio strong { color: var(--text); font-weight: 500; }
-  .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 64px; }
-  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 3px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-decoration: none; font-weight: 500; transition: all 0.2s; cursor: pointer; border: none; }
-  .btn-primary { background: var(--cyan); color: var(--bg); font-weight: 700; }
-  .btn-primary:hover { background: var(--cyan2); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,200,255,0.3); }
-  .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
-  .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); }
-  .alert-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(0,255,136,0.08); border: 1px solid rgba(0,255,136,0.2); border-radius: 3px; font-size: 11px; color: var(--green); letter-spacing: 0.05em; margin-bottom: 20px; }
-  .dot { width: 6px; height: 6px; border-radius: 50%; }
-  .dot-green { background: var(--green); box-shadow: 0 0 8px var(--green); }
-  .dot-yellow { background: var(--yellow); box-shadow: 0 0 8px var(--yellow); }
-
-  /* STAT STRIP */
-  .stat-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; max-width: 800px; }
-  .stat { background: var(--surface); padding: 20px 24px; }
-  .stat-num { font-family: var(--font-display); font-size: 32px; font-weight: 800; color: var(--cyan); line-height: 1; margin-bottom: 6px; }
-  .stat-label { font-size: 11px; color: var(--text); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
-  .stat-sub { font-size: 10px; color: var(--text3); margin-top: 2px; }
-
-  /* SECTION HEADER */
-  .sec-header { margin-bottom: 56px; }
-  .sec-num { font-size: 11px; color: var(--cyan); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-  .sec-num::before { content: ''; display: block; width: 24px; height: 1px; background: var(--cyan); }
-  h2 { font-family: var(--font-display); font-size: clamp(28px, 4vw, 44px); font-weight: 800; color: #fff; line-height: 1.1; letter-spacing: -0.02em; }
-  h2 .dim { color: var(--text3); }
-  .sec-desc { margin-top: 16px; color: var(--text2); max-width: 560px; font-size: 13px; line-height: 1.8; }
-
-  /* PROJECT CARDS */
-  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--border2); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
-  .project-card { background: var(--surface); padding: 32px; transition: background 0.2s; position: relative; overflow: hidden; }
-  .project-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--cyan); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
-  .project-card:hover { background: var(--surface2); }
-  .project-card:hover::before { transform: scaleX(1); }
-  .project-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cyan); background: rgba(0,200,255,0.08); border: 1px solid rgba(0,200,255,0.2); padding: 3px 10px; border-radius: 2px; margin-bottom: 16px; font-weight: 500; }
-  .project-tag.red { color: var(--red); background: rgba(255,56,96,0.08); border-color: rgba(255,56,96,0.2); }
-  .project-tag.green { color: var(--green); background: rgba(0,255,136,0.08); border-color: rgba(0,255,136,0.2); }
-  .project-tag.yellow { color: var(--yellow); background: rgba(255,204,0,0.08); border-color: rgba(255,204,0,0.2); }
-  h3 { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 12px; line-height: 1.3; }
-  .project-desc { font-size: 12.5px; color: var(--text2); line-height: 1.75; margin-bottom: 20px; }
-  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tech-pill { font-size: 10px; padding: 2px 8px; background: var(--bg3); border: 1px solid var(--border); border-radius: 2px; color: var(--text3); letter-spacing: 0.05em; }
-
-  /* EXPERIENCE */
-  .exp-list { display: flex; flex-direction: column; gap: 2px; background: var(--border2); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
-  .exp-card { background: var(--surface); padding: 28px 32px; position: relative; transition: background 0.2s; }
-  .exp-card:hover { background: var(--surface2); }
-  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
-  .exp-role { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: #fff; }
-  .exp-date { font-size: 11px; color: var(--cyan); letter-spacing: 0.05em; white-space: nowrap; }
-  .exp-company { font-size: 12px; color: var(--text3); margin-bottom: 14px; letter-spacing: 0.05em; }
-  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-  .exp-bullets li { font-size: 12.5px; color: var(--text2); display: flex; align-items: flex-start; gap: 10px; line-height: 1.6; }
-  .exp-bullets li::before { content: '—'; color: var(--cyan); flex-shrink: 0; margin-top: 1px; }
-
-  /* SKILLS */
-  .skills-wrap { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
-  .skills-cols { display: grid; grid-template-columns: repeat(3, 1fr); }
-  .skills-col { padding: 28px 32px; border-right: 1px solid var(--border); background: var(--surface); }
-  .skills-col:last-child { border-right: none; }
-  .skills-col-title { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cyan); font-weight: 700; margin-bottom: 16px; }
-  .skill-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text2); padding: 5px 0; border-bottom: 1px solid var(--border2); }
-  .skill-item:last-child { border-bottom: none; }
-  .skill-item::before { content: '→'; color: var(--cyan); font-size: 10px; }
-
-  /* CERTS */
-  .certs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border2); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
-  .cert-card { background: var(--surface); padding: 28px; }
-  .cert-status { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-  .cert-status.passed { color: var(--green); }
-  .cert-status.progress { color: var(--yellow); }
-  .cert-status.queued { color: var(--text3); }
-  .cert-name { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 4px; }
-  .cert-code { font-size: 11px; color: var(--text3); margin-bottom: 12px; letter-spacing: 0.05em; }
-  .cert-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
-
-  /* EDUCATION */
-  .edu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--border2); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
-  .edu-card { background: var(--surface); padding: 28px 32px; }
-  .edu-school { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 4px; }
-  .edu-degree { font-size: 13px; color: var(--cyan); margin-bottom: 8px; }
-  .edu-meta { font-size: 11px; color: var(--text3); }
-
-  /* CONTACT */
-  #contact-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 64px; margin-bottom: 100px; position: relative; overflow: hidden; }
-  #contact-wrap::before { content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,200,255,0.06) 0%, transparent 70%); pointer-events: none; }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
-  .contact-links { display: flex; flex-direction: column; gap: 12px; }
-  .contact-link { display: flex; align-items: center; gap: 16px; padding: 16px 20px; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; text-decoration: none; color: var(--text); transition: all 0.2s; font-size: 13px; }
-  .contact-link:hover { border-color: var(--cyan); color: var(--cyan); }
-  .contact-link-icon { width: 32px; height: 32px; background: var(--surface2); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
-  .contact-link-label { font-size: 10px; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2px; }
-
-  /* PROG BARS */
-  .prog-wrap { margin-bottom: 20px; }
-  .prog-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text2); margin-bottom: 6px; letter-spacing: 0.05em; }
-  .prog-bar { height: 4px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
-  .prog-fill { height: 100%; background: var(--cyan); border-radius: 2px; transition: width 1.2s cubic-bezier(.4,0,.2,1); }
-  .prog-fill.green { background: var(--green); }
-  .prog-fill.yellow { background: var(--yellow); }
-  .prog-fill.dim { background: var(--text3); }
-
-  .divider { height: 1px; background: var(--border2); margin: 0; }
-
-  .cursor { display: inline-block; width: 10px; height: 18px; background: var(--cyan); vertical-align: middle; margin-left: 4px; animation: blink 1s step-end infinite; }
-  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-  footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 32px 40px; max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-  footer span { font-size: 11px; color: var(--text3); }
-
-  @media (max-width: 800px) {
-    nav .nav-links { display: none; }
-    .stat-strip { grid-template-columns: repeat(2, 1fr); }
-    .projects-grid, .edu-grid, .certs-grid { grid-template-columns: 1fr; }
-    .skills-cols { grid-template-columns: 1fr; }
-    .contact-grid { grid-template-columns: 1fr; }
-    section { padding-left: 20px; padding-right: 20px; }
-    #contact-wrap { padding: 40px 24px; }
+  .btn-primary {
+    background: var(--cyan);
+    color: #000;
+    border: none;
+    font-weight: 700;
   }
+
+  .sec-header { margin-bottom: 40px; }
+  .sec-num { color: var(--cyan); font-size: 11px; letter-spacing: .2em; }
+  h2 { font-family: var(--font-display); color: #fff; margin-top: 10px; }
+  .dim { color: var(--text3); }
 </style>
 </head>
+
 <body>
 
-<nav>
-  <a href="#hero" class="nav-logo">tyson<span>@</span>sec<span>:~$</span></a>
-  <ul class="nav-links">
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#certs">Certs</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#contact-wrap" class="nav-cta">Hire Me</a></li>
-  </ul>
-</nav>
-
-<main>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="alert-badge">
-    <div class="dot dot-green"></div>
-    Google Cybersecurity Certificate — Completed · CompTIA Security+ In Progress
-  </div>
-  <div class="hero-tag">Indianapolis, IN · Open to work</div>
-  <h1>Tyson<br><span class="accent">Atkinson</span></h1>
-  <div class="hero-subtitle">Cybersecurity &amp; IT Professional<span class="cursor"></span></div>
-  <p class="hero-bio">
-    Entry-level cybersecurity professional with hands-on experience in <strong>SIEM analytics</strong>,
-    <strong>incident response</strong>, <strong>Active Directory administration</strong>, and
-    <strong>packet-level network analysis</strong>. Administered enterprise environments for 50+ users,
-    performed IOC investigations via VirusTotal, and executed structured incident response workflows using Splunk.
-    Currently pursuing a B.S. in Computer Science &amp; Cybersecurity at IU Indianapolis.
-  </p>
-  <div class="hero-buttons">
-    <a href="#projects" class="btn btn-primary">▶ View Projects</a>
-    <a href="#experience" class="btn btn-outline">Experience</a>
-    <a href="mailto:tysonatk12@gmail.com" class="btn btn-outline">✉ tysonatk12@gmail.com</a>
-    <a href="https://linkedin.com/in/tyson-atkinson" class="btn btn-outline" target="_blank">LinkedIn</a>
-    <a href="https://github.com/Tysonatk12" class="btn btn-outline" target="_blank">GitHub</a>
-    <a href="#resume" class="btn btn-outline">Resume ↓</a>
-  </div>
-  <div class="stat-strip">
-    <div class="stat">
-      <div class="stat-num">6</div>
-      <div class="stat-label">Cyber Projects</div>
-      <div class="stat-sub">IR, analysis, forensics</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">50+</div>
-      <div class="stat-label">Users Managed</div>
-      <div class="stat-sub">AD, M365, device deploy</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">3</div>
-      <div class="stat-label">Years Experience</div>
-      <div class="stat-sub">IT + Cybersecurity</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">S+</div>
-      <div class="stat-label">In Progress</div>
-      <div class="stat-sub">CompTIA Security+</div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- PROJECTS -->
-<section id="projects" class="fade-in">
-  <div class="sec-header">
-    <div class="sec-num">01 / Cybersecurity Projects</div>
-    <h2>Hands-on security <span class="dim">analysis</span></h2>
-    <p class="sec-desc">Practical cybersecurity, networking, and incident response projects focused on technical analysis, packet inspection, and security operations workflows.</p>
-  </div>
-
-  <div class="projects-grid">
-    <div class="project-card">
-      <span class="project-tag">Network Analysis</span>
-      <h3>DNS &amp; ICMP Traffic Analysis</h3>
-      <p class="project-desc">Performed packet-level network traffic analysis using tcpdump to investigate DNS communication failures and ICMP error responses. Identified UDP port 53 delivery failures, analyzed timestamps, source/destination IPs, and documented DNS resolution issues during a simulated incident response investigation.</p>
-      <div class="project-tags">
-        <span class="tech-pill">tcpdump</span>
-        <span class="tech-pill">UDP/53</span>
-        <span class="tech-pill">DNS</span>
-        <span class="tech-pill">ICMP</span>
-        <span class="tech-pill">Incident Response</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <span class="project-tag red">DoS Investigation</span>
-      <h3>SYN Flood DoS Investigation</h3>
-      <p class="project-desc">Investigated a simulated TCP SYN flood denial-of-service attack against a web server using packet analysis and network logs. Identified abnormal SYN request behavior, HTTP timeout conditions, and server connection failures while documenting mitigation strategies including firewall filtering and server isolation.</p>
-      <div class="project-tags">
-        <span class="tech-pill">TCP/SYN</span>
-        <span class="tech-pill">Packet Analysis</span>
-        <span class="tech-pill">DoS Mitigation</span>
-        <span class="tech-pill">Firewall</span>
-        <span class="tech-pill">HTTP</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <span class="project-tag red">Malware Analysis</span>
-      <h3>Website Compromise &amp; Malware Analysis</h3>
-      <p class="project-desc">Analyzed a simulated website compromise involving brute-force authentication attacks, malicious JavaScript injection, and malware-based browser redirection. Traced DNS and HTTP traffic between compromised domains and documented indicators of compromise and remediation recommendations.</p>
-      <div class="project-tags">
-        <span class="tech-pill">Malware</span>
-        <span class="tech-pill">JS Injection</span>
-        <span class="tech-pill">Brute Force</span>
-        <span class="tech-pill">DNS Tracing</span>
-        <span class="tech-pill">IoC</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <span class="project-tag green">Lab Build</span>
-      <h3>tcpdump Network Analysis Lab</h3>
-      <p class="project-desc">Created a hands-on network traffic analysis lab focused on TCP/IP, DNS, HTTP, ICMP, and packet inspection using tcpdump. Developed structured documentation and protocol breakdowns to strengthen incident response and troubleshooting workflows.</p>
-      <div class="project-tags">
-        <span class="tech-pill">tcpdump</span>
-        <span class="tech-pill">TCP/IP</span>
-        <span class="tech-pill">Protocol Analysis</span>
-        <span class="tech-pill">Documentation</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <span class="project-tag yellow">Reporting</span>
-      <h3>Security Incident Reporting</h3>
-      <p class="project-desc">Produced professional cybersecurity incident reports documenting denial-of-service attacks, DNS communication failures, malware redirection activity, and compromised web infrastructure. Focused on technical communication, attack identification, and remediation planning.</p>
-      <div class="project-tags">
-        <span class="tech-pill">Incident Reports</span>
-        <span class="tech-pill">Technical Writing</span>
-        <span class="tech-pill">DoS</span>
-        <span class="tech-pill">Remediation</span>
-        <span class="tech-pill">NIST</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <span class="project-tag green">Homelab</span>
-      <h3>Cybersecurity Homelab</h3>
-      <p class="project-desc">Built and maintained a personal cybersecurity homelab environment for practicing network analysis, system administration, troubleshooting, and security monitoring. Worked with virtualization, packet analysis tools, Windows/Linux environments, and simulated attack scenarios.</p>
-      <div class="project-tags">
-        <span class="tech-pill">VMware</span>
-        <span class="tech-pill">Wireshark</span>
-        <span class="tech-pill">Linux</span>
-        <span class="tech-pill">Windows</span>
-        <span class="tech-pill">Suricata</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- EXPERIENCE -->
-<section id="experience" class="fade-in">
-  <div class="sec-header">
-    <div class="sec-num">02 / Experience</div>
-    <h2>Work <span class="dim">history</span></h2>
-    <p class="sec-desc">Real-world IT and cybersecurity operations across enterprise environments, AV production, and independent technical work.</p>
-  </div>
-
-  <div class="exp-list">
-    <div class="exp-card">
-      <div class="exp-header">
-        <div class="exp-role">Information Technology &amp; Cybersecurity Analyst</div>
-        <div class="exp-date">June 2023 – Present</div>
-      </div>
-      <div class="exp-company">28th Street Church of God in Christ · Indianapolis, IN</div>
-      <ul class="exp-bullets">
-        <li>Administer Active Directory, Microsoft 365, and enterprise user accounts for 50+ users; manage access controls, device deployment, and workstation configuration</li>
-        <li>Perform SIEM-based threat analysis using Splunk, conduct IOC investigations via VirusTotal, and execute incident response workflows with structured playbooks</li>
-        <li>Diagnose TCP/IP, DNS, and network connectivity issues; deploy and maintain VMware virtualized infrastructure for security operations</li>
-        <li>Engineer technical documentation, support procedures, and end-user training materials; drive workflow optimization initiatives</li>
-      </ul>
-    </div>
-
-    <div class="exp-card">
-      <div class="exp-header">
-        <div class="exp-role">Technical Event Support &amp; AV Operations Specialist</div>
-        <div class="exp-date">May 2026 – Present</div>
-      </div>
-      <div class="exp-company">DispatchAV (Contract) · Indianapolis, IN</div>
-      <ul class="exp-bullets">
-        <li>Supported multi-day enterprise event production at JW Marriott Indianapolis with real-time technical troubleshooting and AV equipment management</li>
-        <li>Diagnosed and resolved hardware, networking, and connectivity issues under tight operational constraints in fast-paced environments</li>
-        <li>Managed AV infrastructure including equipment setup, cable management, configuration, and systematic post-event teardown</li>
-      </ul>
-    </div>
-
-    <div class="exp-card">
-      <div class="exp-header">
-        <div class="exp-role">Prompt Engineer &amp; AI Systems Developer</div>
-        <div class="exp-date">Present</div>
-      </div>
-      <div class="exp-company">Independent Projects · Remote</div>
-      <ul class="exp-bullets">
-        <li>Design and optimize large language model prompts for technical automation, security analysis, and incident response tasks</li>
-        <li>Leverage API orchestration and structured output generation to build intelligent automation workflows and decision-support systems</li>
-        <li>Fine-tune prompt architectures for accuracy, reducing false positives in security alerting systems and improving response efficiency</li>
-      </ul>
-    </div>
-
-    <div class="exp-card">
-      <div class="exp-header">
-        <div class="exp-role">Information Technology Technician</div>
-        <div class="exp-date">Aug 2024 – Jan 2025</div>
-      </div>
-      <div class="exp-company">Anderson University · Anderson, IN</div>
-      <ul class="exp-bullets">
-        <li>Delivered Level 1/2 technical support for hardware, software, and enterprise mobile device troubleshooting across Windows and iOS ecosystems</li>
-        <li>Assisted with desktop deployment, system imaging, workstation configuration, and Active Directory administration; managed device lifecycle and MDM integration</li>
-        <li>Documented technical issues and remediation solutions for internal knowledge base; contributed to IT infrastructure support tasks</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- SKILLS -->
-<section id="skills" class="fade-in">
-  <div class="sec-header">
-    <div class="sec-num">03 / Skills</div>
-    <h2>Technical <span class="dim">coverage</span></h2>
-    <p class="sec-desc">Hands-on tools and frameworks used in real environments — not a keyword list.</p>
-  </div>
-
-  <div class="skills-wrap" style="margin-bottom: 40px;">
-    <div class="skills-cols">
-      <div class="skills-col">
-        <div class="skills-col-title">Security &amp; Monitoring</div>
-        <div class="skill-item">Splunk SIEM</div>
-        <div class="skill-item">Wireshark</div>
-        <div class="skill-item">Suricata</div>
-        <div class="skill-item">VirusTotal · IOC Analysis</div>
-        <div class="skill-item">Incident Response Playbooks</div>
-        <div class="skill-item">Phishing Analysis</div>
-        <div class="skill-item">NIST Cybersecurity Framework</div>
-        <div class="skill-item">Vulnerability Assessment</div>
-      </div>
-      <div class="skills-col">
-        <div class="skills-col-title">Systems &amp; Administration</div>
-        <div class="skill-item">Active Directory</div>
-        <div class="skill-item">Microsoft 365 Admin</div>
-        <div class="skill-item">Windows Server</div>
-        <div class="skill-item">Desktop Deployment &amp; Imaging</div>
-        <div class="skill-item">MDM Integration</div>
-        <div class="skill-item">iOS Troubleshooting</div>
-        <div class="skill-item">TCP/IP · DNS · Network Diag</div>
-        <div class="skill-item">VMware Virtualization</div>
-      </div>
-      <div class="skills-col">
-        <div class="skills-col-title">AI &amp; Automation</div>
-        <div class="skill-item">Prompt Engineering</div>
-        <div class="skill-item">LLM Optimization</div>
-        <div class="skill-item">API Orchestration</div>
-        <div class="skill-item">Workflow Automation</div>
-        <div class="skill-item">Structured Output Generation</div>
-        <div class="skill-item">Security Alert Tuning</div>
-        <div class="skill-item">Technical Documentation</div>
-        <div class="skill-item">Security Audits</div>
-      </div>
-    </div>
-  </div>
-
-  <div style="max-width: 560px;">
-    <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 24px;">Cert Progress</div>
-    <div class="prog-wrap">
-      <div class="prog-label"><span>Google Cybersecurity Certificate</span><span style="color:var(--green)">COMPLETED</span></div>
-      <div class="prog-bar"><div class="prog-fill green" style="width:100%"></div></div>
-    </div>
-    <div class="prog-wrap">
-      <div class="prog-label"><span>CompTIA Security+ SY0-701</span><span>In Progress</span></div>
-      <div class="prog-bar"><div class="prog-fill yellow" style="width:60%"></div></div>
-    </div>
-    <div class="prog-wrap">
-      <div class="prog-label"><span>B.S. Computer Science &amp; Cybersecurity</span><span>Expected 2027</span></div>
-      <div class="prog-bar"><div class="prog-fill" style="width:50%"></div></div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- CERTS -->
-<section id="certs" class="fade-in">
-  <div class="sec-header">
-    <div class="sec-num">04 / Certifications</div>
-    <h2>Credentials <span class="dim">&amp; activities</span></h2>
-  </div>
-
-  <div class="certs-grid">
-    <div class="cert-card" style="border-top: 2px solid var(--green);">
-      <div class="cert-status passed"><div class="dot dot-green"></div> Completed</div>
-      <div class="cert-name">Google Cybersecurity</div>
-      <div class="cert-code">Professional Certificate · Coursera</div>
-      <div class="cert-desc">Foundations of cybersecurity, network security, Linux, SQL, Python scripting, SIEM tools, and incident response.</div>
-    </div>
-    <div class="cert-card" style="border-top: 2px solid var(--yellow);">
-      <div class="cert-status progress"><div class="dot dot-yellow"></div> Currently Pursuing</div>
-      <div class="cert-name">CompTIA Security+</div>
-      <div class="cert-code">SY0-701</div>
-      <div class="cert-desc">Threats, vulnerabilities, architecture, implementation, operations, incident response, and governance.</div>
-    </div>
-    <div class="cert-card" style="border-top: 2px solid var(--cyan);">
-      <div class="cert-status" style="color:var(--cyan);">⬡ Active Member</div>
-      <div class="cert-name">Cyber Defense Team</div>
-      <div class="cert-code">Anderson University</div>
-      <div class="cert-desc">Active participation in collegiate cyber defense competitions and hands-on security operations training.</div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- EDUCATION -->
-<section id="education" class="fade-in">
-  <div class="sec-header">
-    <div class="sec-num">05 / Education</div>
-    <h2>Academic <span class="dim">background</span></h2>
-  </div>
-
-  <div class="edu-grid">
-    <div class="edu-card" style="border-top: 2px solid var(--cyan);">
-      <div class="edu-school">Indiana University Indianapolis</div>
-      <div class="edu-degree">B.S. Computer Science &amp; Cybersecurity</div>
-      <div class="edu-meta">Indianapolis, IN · Expected 2027</div>
-    </div>
-    <div class="edu-card" style="border-top: 2px solid var(--text3);">
-      <div class="edu-school">Anderson University</div>
-      <div class="edu-degree">Cybersecurity Coursework · Cyber Defense Team</div>
-      <div class="edu-meta">Anderson, IN · Fall 2024</div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
 <!-- RESUME -->
-<section id="resume" class="fade-in">
+<section id="resume">
   <div class="sec-header">
     <div class="sec-num">06 / Resume</div>
     <h2>Full <span class="dim">resume</span></h2>
-    <p class="sec-desc">Embedded below. Download the PDF version for applications.</p>
   </div>
-  <div style="border: 1px solid var(--border); border-radius: 6px; overflow: hidden; margin-bottom: 20px;">
-    <div style="background: var(--surface); padding: 12px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
-      <span style="font-size: 11px; color: var(--text3); letter-spacing: 0.1em;">TYSON-ATKINSON-RESUME.PDF</span>
-      <a href="TysonResumeA.pdf" target="_blank" class="btn btn-outline" style="padding: 6px 14px; font-size: 10px;">Download ↓</a>
+
+  <!-- CLEAN PROFESSIONAL RESUME BLOCK (FIXED) -->
+  <div style="border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface);">
+
+    <div style="padding: 14px 18px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border);">
+      <span style="font-size:11px; color:var(--text3); letter-spacing:.1em;">
+        TYSON-ATKINSON-RESUME.PDF
+      </span>
+
+      <a href="TysonResumeA.pdf" target="_blank" class="btn btn-primary">
+        Download Resume
+      </a>
     </div>
-    <div style="background: #111; padding: 40px; text-align: center; color: var(--text3); font-size: 13px;">
-      <!-- Replace the src below with your hosted PDF URL -->
-     <iframe
-  src="TysonResumeA.pdf"
-  style="width:100%; height:700px; border:none; display:block;">
-</iframe>
+
+    <!-- CLEAN PREVIEW (NO ACROBAT UI) -->
+    <div style="padding: 70px 20px; text-align:center;">
+      <div style="font-size:42px; margin-bottom:12px;">📄</div>
+      <div style="color:var(--text2); margin-bottom:18px;">
+        Resume preview available in new tab
+      </div>
+
+      <a href="TysonResumeA.pdf" target="_blank" class="btn">
+        Open Full Resume →
+      </a>
+    </div>
+
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- CONTACT -->
-<section style="padding-bottom: 0;">
-  <div id="contact-wrap" class="fade-in">
-    <div class="contact-grid">
-      <div>
-        <div class="sec-num">07 / Contact</div>
-        <h2 style="margin-bottom: 16px;">Let's <span class="dim">talk</span></h2>
-        <p style="color: var(--text2); font-size: 13px; line-height: 1.8; margin-bottom: 24px;">
-          Available for cybersecurity analyst, IT support, help desk, and security operations roles in the
-          <strong style="color: var(--text)">Indianapolis metro</strong>. On-site, hybrid, or remote.
-          Reachable weekdays.
-        </p>
-        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 12px; color: var(--text2);">
-          <div>→ Cybersecurity Analyst (entry-level)</div>
-          <div>→ SOC Analyst / Tier 1</div>
-          <div>→ IT Support / Help Desk Technician</div>
-          <div>→ Junior Systems Administrator</div>
-        </div>
-      </div>
-      <div class="contact-links">
-        <a href="mailto:tysonatk12@gmail.com" class="contact-link">
-          <div class="contact-link-icon">✉</div>
-          <div><div class="contact-link-label">Email</div>tysonatk12@gmail.com</div>
-        </a>
-        <a href="tel:+13172389168" class="contact-link">
-          <div class="contact-link-icon">☎</div>
-          <div><div class="contact-link-label">Phone</div>(317) 238-9168</div>
-        </a>
-        <a href="https://linkedin.com/in/tyson-atkinson" class="contact-link" target="_blank">
-          <div class="contact-link-icon">in</div>
-          <div><div class="contact-link-label">LinkedIn</div>linkedin.com/in/tyson-atkinson</div>
-        </a>
-        <a href="https://github.com/Tysonatk12" class="contact-link" target="_blank">
-          <div class="contact-link-icon">⌥</div>
-          <div><div class="contact-link-label">GitHub</div>github.com/Tysonatk12</div>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  <span>Tyson Atkinson · Indianapolis, IN · B.S. CS &amp; Cybersecurity Expected 2027</span>
-  <span style="color: var(--cyan);">tysonatk12@gmail.com</span>
-</footer>
-
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(el => {
-      if (el.isIntersecting) {
-        el.target.classList.add('visible');
-        el.target.querySelectorAll('.prog-fill').forEach(bar => {
-          const w = bar.style.width;
-          bar.style.width = '0';
-          setTimeout(() => bar.style.width = w, 100);
-        });
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 80) current = sec.id; });
-    navLinks.forEach(a => {
-      a.style.color = '';
-      if (a.getAttribute('href') === '#' + current) a.style.color = 'var(--cyan)';
-    });
-  });
-</script>
 </body>
 </html>
