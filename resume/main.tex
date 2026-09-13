@@ -1,0 +1,111 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{lmodern} % Computer Modern family, matching the original LaTeX look.
+\ifdefined\pdfgentounicode
+\input{glyphtounicode}
+\pdfgentounicode=1
+\fi
+\usepackage[left=38pt,right=38pt,top=28pt,bottom=32pt]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Tyson Atkinson - IT Support Resume},pdfauthor={Tyson Atkinson}}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\tabcolsep}{0pt}
+\raggedright
+\urlstyle{same}
+\titleformat{\section}{\normalfont\fontsize{11.8}{14}\selectfont}{}{0pt}{\MakeUppercase}[\vspace{-4pt}\titlerule]
+\titlespacing*{\section}{0pt}{7pt}{4pt}
+\setlist[itemize]{leftmargin=12pt,labelsep=3pt,label=\textbullet,topsep=0pt,partopsep=0pt,itemsep=1.6pt,parsep=0pt}
+\newcommand{\role}[4]{%
+  \begin{tabularx}{\textwidth}{@{}Xr@{}}
+    \textbf{#1} & #2 \\
+    \textit{#3} & \textit{#4}
+  \end{tabularx}\vspace{-1pt}
+}
+\newcommand{\project}[2]{\textbf{#1} $|$ \textit{#2}\par}
+\newcommand{\entrygap}{\vspace{3pt}}
+
+\begin{document}
+\fontsize{10.15}{11.65}\selectfont
+\begin{center}
+  {\fontsize{27}{30}\selectfont\textbf{Tyson Atkinson}}\\[2pt]
+  {\fontsize{9.5}{11.5}\selectfont Greater Indianapolis, IN}\\
+  {\fontsize{9.5}{11.5}\selectfont
+   \href{tel:+13172389168}{\underline{(317) 238-9168}}\enspace$|$\enspace
+   \href{mailto:tysonatk12@gmail.com}{\underline{tysonatk12@gmail.com}}\enspace$|$\enspace
+   \href{https://www.linkedin.com/in/tysonatkinson/}{\underline{LinkedIn}}\enspace$|$\enspace
+   \href{https://github.com/Tysonatk12}{\underline{GitHub}}\enspace$|$\enspace
+   \href{https://tysonatk12.github.io/tysonatkinson/}{\underline{Portfolio}}}
+\end{center}
+\vspace{-8pt}
+
+\section{Summary}
+IT support professional with workplace experience using Active Directory, Microsoft 365, and ServiceNow, plus hands-on support for university users, church technology, and live events. Combines hardware, software, and connectivity troubleshooting with independent Python and AI workflow projects. Informatics student with fully online coursework; available immediately for full-time work, including evenings and weekends.
+
+\section{Technical Skills}
+\textbf{IT Support:} Active Directory, Microsoft 365, ServiceNow, Windows, Linux, hardware/software troubleshooting.\\
+\textbf{Networking \& Operations:} TCP/IP, DNS, connectivity troubleshooting, A/V systems, technical documentation.\\
+\textbf{AI \& Development:} Python, JavaScript, API integration, prompt design, structured AI outputs, document processing.\\
+\textbf{Independent Security Labs:} Splunk, Wireshark, tcpdump, VirusTotal, incident analysis.
+
+\section{Experience}
+\role{Data Entry \& Logistics Analyst}{2026}{VTI Specialized}{}
+\begin{itemize}
+  \item Maintained shipment, load, and customer data in databases and transportation management systems; cross-checked orders, invoices, and documents for discrepancies.
+  \item Communicated with drivers, customers, and internal teams to clarify information and keep records accurate.
+\end{itemize}
+\entrygap
+\role{Technical Event Support / AV Operations Contractor}{May 2026 - Jun 2026}{DispatchAV}{Indianapolis, IN}
+\begin{itemize}
+  \item Supported event equipment setup and teardown; resolved hardware and connectivity issues under live-event time constraints.
+\end{itemize}
+\entrygap
+\role{Information Technology Specialist}{May 2024 - Jun 2026}{28th Street Church of God in Christ $|$ Part-time}{Indianapolis, IN}
+\begin{tabularx}{\textwidth}{@{}Xr@{}}
+  \textit{Additional role: AV Specialist} & \textit{Dec 2022 - Jun 2026}
+\end{tabularx}\vspace{-1pt}
+\begin{itemize}
+  \item Troubleshot A/V and network connectivity issues with church staff and supported technology used during services.
+  \item Configured and maintained livestream and service equipment; performed setup and operational checks.
+\end{itemize}
+\entrygap
+\role{Information Technology Technician}{Aug 2024 - Jan 2025}{Anderson University $|$ Part-time}{Anderson, IN}
+\begin{itemize}
+  \item Supported students and faculty with Windows devices, network printers, and classroom equipment; prioritized tickets and followed up on open issues.
+  \item Assisted with account setup, password and user-access issues, and workstation configuration.
+  \item Troubleshot TCP/IP, DNS, and connectivity problems; escalated issues requiring additional support.
+\end{itemize}
+
+\section{Selected Technical Projects}
+\project{Elauno}{Freight document reconciliation $|$ Python, AI document processing}
+\begin{itemize}
+  \item Developed an AI-assisted ingestion workflow for text PDFs, scanned PDFs, and images, with text and vision extraction paths.
+  \item Separated AI field interpretation from Python Decimal arithmetic to compare agreed, billed, and paid amounts.
+\end{itemize}
+\entrygap
+\project{Draft Jarvis}{Local fantasy draft assistant $|$ Python, JavaScript}
+\begin{itemize}
+  \item Built a dashboard combining player data and local rankings, with saved draft state, undo, and manual fallback when live data is unavailable.
+\end{itemize}
+\entrygap
+\project{Kairos}{Local prediction-market research $|$ APIs, structured AI outputs}
+\begin{itemize}
+  \item Developed a research workflow combining market data and schema-constrained AI responses, with paper-trading and forecast-evaluation components.
+\end{itemize}
+
+\section{Education}
+\role{Indiana University Indianapolis}{Expected 2027}{Informatics $|$ Fully online coursework}{Indianapolis, IN}
+\entrygap
+\role{Anderson University}{Fall 2024}{Cybersecurity coursework $|$ Cyber Defense Team}{Anderson, IN}
+
+\section{Certifications}
+\textbf{Google Cybersecurity Professional Certificate} - Coursera (Completed)
+
+\end{document}
